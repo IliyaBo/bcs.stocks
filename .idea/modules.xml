@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/stocks.iml" filepath="$PROJECT_DIR$/.idea/stocks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stocks/stocks-api/stocks-api.iml" filepath="$PROJECT_DIR$/stocks/stocks-api/stocks-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stocks/stocks-api-dto/stocks-api-dto.iml" filepath="$PROJECT_DIR$/stocks/stocks-api-dto/stocks-api-dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stocks/stocks-common/stocks-common.iml" filepath="$PROJECT_DIR$/stocks/stocks-common/stocks-common.iml" />
+    </modules>
+  </component>
+</project>
