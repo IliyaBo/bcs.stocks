@@ -2,13 +2,6 @@ package com.bcs.stocks.mapper;
 
 import com.bcs.stocks.model.entity.Symbol;
 import com.fasterxml.jackson.databind.JsonNode;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 /*@Mapper(imports = {JsonNode.class, Symbol.class, BigDecimal.class}, componentModel = "spring")*/
 public interface NodeSymbolMapperImpl extends IMapper<JsonNode, Symbol> {

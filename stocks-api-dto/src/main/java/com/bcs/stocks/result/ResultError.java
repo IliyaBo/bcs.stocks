@@ -1,21 +1,21 @@
 package com.bcs.stocks.result;
 
 public enum ResultError {
-    INTERNAL_ERROR("500", "Internal Server Error. Details:");
+  INTERNAL_ERROR("500", "Internal Server Error. Details:");
 
-    private String code;
-    private String message;
+  private String code;
+  private String message;
 
-    ResultError(String code, String message) {
-        this.code = code;
-        this.message = message;
-    }
+  ResultError(String code, String message) {
+    this.code = code;
+    this.message = message;
+  }
 
-    public String getCode() {
-        return code;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public String getMessage() {
+    return message;
+  }
 }

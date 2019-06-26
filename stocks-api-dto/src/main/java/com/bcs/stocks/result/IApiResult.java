@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.Collection;
 
 public interface IApiResult<T> extends Serializable {
-    T getResult();
 
-    T getResultWithoutCheck();
+  T getResult();
 
-    ApiResultStatus getStatus();
+  T getResultWithoutCheck();
 
-    Collection<IApiResultError> getErrors();
+  ApiResultStatus getStatus();
+
+  Collection<IApiResultError> getErrors();
 }

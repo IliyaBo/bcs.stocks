@@ -5,10 +5,8 @@ package com.bcs.stocks;
  */
 public interface StockServiceApi {
 
-    /**
-     * Get the current stock portfolio value calculation and it's sectoral distribution
-     *
-     * @return
-     */
-    String calculation();
+  /**
+   * Get the current stock portfolio value calculation and it's sectoral distribution
+   */
+  String calculation();
 }

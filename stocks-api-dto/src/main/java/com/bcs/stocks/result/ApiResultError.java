@@ -1,31 +1,32 @@
 package com.bcs.stocks.result;
 
 public class ApiResultError implements IApiResultError {
-    private static final long serialVersionUID = 1L;
 
-    private String code;
-    private String message;
+  private static final long serialVersionUID = 1L;
 
-    public ApiResultError(String code, String message) {
-        this.code = code;
-        this.message = message;
-    }
+  private String code;
+  private String message;
 
-    @Override
-    public String getCode() {
-        return code;
-    }
+  public ApiResultError(String code, String message) {
+    this.code = code;
+    this.message = message;
+  }
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
+  @Override
+  public String getCode() {
+    return code;
+  }
 
-    @Override
-    public String toString() {
-        return "ResultError{" +
-                "code='" + code + '\'' +
-                ", message='" + message + '\'' +
-                '}';
-    }
+  @Override
+  public String getMessage() {
+    return message;
+  }
+
+  @Override
+  public String toString() {
+    return "ResultError{" +
+        "code='" + code + '\'' +
+        ", message='" + message + '\'' +
+        '}';
+  }
 }

@@ -8,11 +8,11 @@ import com.bcs.stocks.model.stock.StocksDto;
  */
 public interface IEXService {
 
-    /**
-     * Pull stocks from some repository and calculate by sector
-     *
-     * @param stocks dto from user's request
-     * @return custom calculateDto
-     */
-    CalculateDto calculateBySector(StocksDto stocks);
+  /**
+   * Pull stocks from some repository and calculate by sector
+   *
+   * @param stocks dto from user's request
+   * @return custom calculateDto
+   */
+  CalculateDto calculateBySector(StocksDto stocks);
 }

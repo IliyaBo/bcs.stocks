@@ -17,32 +17,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/stocks")
 public class StocksServiceUi {
 
-    private IEXService iexService;
+  private IEXService iexService;
 
-    @Autowired
-    public void setIexService(IEXService iexService) {
-        this.iexService = iexService;
-    }
+  @Autowired
+  public void setIexService(IEXService iexService) {
+    this.iexService = iexService;
+  }
 
-    @RequestMapping(
-            value = "/check",
-            method = RequestMethod.GET)
-    public String check() {
-        return "check";
-    }
+  @RequestMapping(
+      value = "/check",
+      method = RequestMethod.GET)
+  public String check() {
+    return "check";
+  }
 
-    @RequestMapping(
-            value = "/calculateBySector",
-            method = RequestMethod.POST,
-            headers = "Accept=application/json")
-    public ApiResult<CalculateDto> calculateBySector(@RequestBody StocksDto stocks) {
-        try {
-            return new ApiResult<>(iexService.calculateBySector(stocks));
-            //todo catch custom exceptions
-        } catch (Exception ex) {
-            return new ApiResult<>(
-                    new ApiResultError(ResultError.INTERNAL_ERROR.getCode(),
-                            ResultError.INTERNAL_ERROR.getMessage() + ExceptionUtil.getStackTraceAsString(ex)));
-        }
+  @RequestMapping(
+      value = "/calculateBySector",
+      method = RequestMethod.POST,
+      headers = "Accept=application/json")
+  public ApiResult<CalculateDto> calculateBySector(@RequestBody StocksDto stocks) {
+    try {
+      return new ApiResult<>(iexService.calculateBySector(stocks));
+      //todo catch custom exceptions
+    } catch (Exception ex) {
+      return new ApiResult<>(
+          new ApiResultError(ResultError.INTERNAL_ERROR.getCode(),
+              ResultError.INTERNAL_ERROR.getMessage() + ExceptionUtil.getStackTraceAsString(ex)));
     }
+  }
 }
