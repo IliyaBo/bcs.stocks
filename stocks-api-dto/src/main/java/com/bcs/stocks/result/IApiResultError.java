@@ -2,8 +2,9 @@ package com.bcs.stocks.result;
 
 import java.io.Serializable;
 
-public interface IApiResultError extends Serializable{
-    String getCode();
+public interface IApiResultError extends Serializable {
 
-    String getMessage();
+  String getCode();
+
+  String getMessage();
 }

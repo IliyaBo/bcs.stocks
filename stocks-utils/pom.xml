@@ -10,11 +10,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>stocks-api-dto</artifactId>
+  <artifactId>stocks-utils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-
-  <properties>
-    <start-class>com.bcs.stocks.StocksApplication</start-class>
-  </properties>
 
 </project>

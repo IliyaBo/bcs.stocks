@@ -2,30 +2,35 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.bcs.stocks</groupId>
-        <artifactId>stocks</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>stocks-common</artifactId>
+  <parent>
+    <groupId>com.bcs.stocks</groupId>
+    <artifactId>stocks</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+  </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.bcs.stocks</groupId>
-            <artifactId>stocks-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.bcs.stocks</groupId>
-            <artifactId>stocks-api-dto</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+  <artifactId>stocks-common</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.bcs.stocks</groupId>
+      <artifactId>stocks-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.bcs.stocks</groupId>
+      <artifactId>stocks-api-dto</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>2.0.0-rc2</version>
+    </dependency>
+  </dependencies>
 
 
 </project>

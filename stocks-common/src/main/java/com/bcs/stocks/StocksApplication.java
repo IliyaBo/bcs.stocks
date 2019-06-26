@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"com.bcs.stocks"})
 public class StocksApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StocksApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(StocksApplication.class, args);
+  }
 
 }
