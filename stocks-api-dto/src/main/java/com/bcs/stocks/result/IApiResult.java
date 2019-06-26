@@ -7,8 +7,6 @@ public interface IApiResult<T> extends Serializable {
 
   T getResult();
 
-  T getResultWithoutCheck();
-
   ApiResultStatus getStatus();
 
   Collection<IApiResultError> getErrors();
