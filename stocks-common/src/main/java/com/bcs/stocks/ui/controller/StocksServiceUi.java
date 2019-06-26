@@ -36,10 +36,10 @@ public class StocksServiceUi {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})*/
     @RequestMapping(
-            value = "/symbols",
+            value = "/calculation",
             method = RequestMethod.POST,
             headers = "Accept=application/json")
-    public  List<AllocationDto> symbols(@RequestBody StocksDto stocks) {
+    public  List<AllocationDto> calculation(@RequestBody StocksDto stocks) {
 
         return iexService.getAllocations(stocks);
     }

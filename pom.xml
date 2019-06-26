@@ -21,6 +21,7 @@
 		<jackson.version>2.9.5</jackson.version>
 		<jackson.mapper.version>1.9.9</jackson.mapper.version>
 		<io.swagger>2.0.0-rc2</io.swagger>
+		<mapstruct.version>1.3.0.Final</mapstruct.version>
 		<start-class>com.bcs.stocks.StocksApplication</start-class>
 
 		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
@@ -64,6 +65,13 @@
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-annotations</artifactId>
 			<version>${io.swagger}</version>
+		</dependency>
+
+		<!--mapstruct-->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-jdk8</artifactId>
+			<version>${mapstruct.version}</version>
 		</dependency>
 
 		<dependency>
