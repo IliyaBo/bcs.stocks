@@ -43,6 +43,6 @@ public class StocksServiceUi {
             headers = "Accept=application/json")
     public List<AllocationDto> calculation(@RequestBody StocksDto stocks) {
 
-        return iexService.getAllocationsFrom(stocks, Boolean.TRUE);
+        return iexService.getAllocationsFrom(stocks);
     }
 }

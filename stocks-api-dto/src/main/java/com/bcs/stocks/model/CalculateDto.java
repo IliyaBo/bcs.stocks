@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 @ToString
@@ -12,7 +13,7 @@ public class CalculateDto implements Serializable {
 
     @Getter
     @Setter
-    private String value;
+    private BigDecimal value;
 
     @Getter
     @Setter

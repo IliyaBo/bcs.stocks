@@ -1,9 +1,7 @@
 package com.bcs.stocks.service;
 
-import com.bcs.stocks.model.AllocationDto;
+import com.bcs.stocks.model.CalculateDto;
 import com.bcs.stocks.model.stock.StocksDto;
-
-import java.util.List;
 
 /**
  * Service for getting data from IEX
@@ -11,11 +9,10 @@ import java.util.List;
 public interface IEXService {
 
     /**
-     * Pull stocks from cache or realTime and prepare allocations
+     * Pull stocks from some repository and calculate by sector
      *
      * @param stocks dto from user's request
-     * @param fromCache take stocks from cache or in realTime mode
-     * @return custom allocation dto
+     * @return custom calculateDto
      */
-    List<AllocationDto> getAllocationsFrom(StocksDto stocks, Boolean fromCache);
+    CalculateDto calculateBySector(StocksDto stocks);
 }
