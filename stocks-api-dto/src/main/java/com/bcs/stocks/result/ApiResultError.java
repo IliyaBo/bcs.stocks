@@ -1,5 +1,8 @@
 package com.bcs.stocks.result;
 
+import lombok.ToString;
+
+@ToString
 public class ApiResultError implements IApiResultError {
 
   private static final long serialVersionUID = 1L;
@@ -22,11 +25,4 @@ public class ApiResultError implements IApiResultError {
     return message;
   }
 
-  @Override
-  public String toString() {
-    return "ResultError{" +
-        "code='" + code + '\'' +
-        ", message='" + message + '\'' +
-        '}';
-  }
 }

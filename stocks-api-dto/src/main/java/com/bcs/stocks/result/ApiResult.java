@@ -2,7 +2,9 @@ package com.bcs.stocks.result;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import lombok.ToString;
 
+@ToString
 public class ApiResult<T> implements IApiResult<T> {
 
   private static final long serialVersionUID = 1L;
@@ -48,11 +50,6 @@ public class ApiResult<T> implements IApiResult<T> {
   }
 
   @Override
-  public T getResultWithoutCheck() {
-    return result;
-  }
-
-  @Override
   public ApiResultStatus getStatus() {
     return status;
   }
@@ -70,12 +67,4 @@ public class ApiResult<T> implements IApiResult<T> {
     errors.add(error);
   }
 
-  @Override
-  public String toString() {
-    return "ApiResult{" +
-        "result=" + result +
-        ", status=" + status +
-        ", errors=" + errors +
-        '}';
-  }
 }
