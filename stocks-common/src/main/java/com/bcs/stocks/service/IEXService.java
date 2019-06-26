@@ -1,7 +1,7 @@
 package com.bcs.stocks.service;
 
 import com.bcs.stocks.model.AllocationDto;
-import com.bcs.stocks.model.StockDto;
+import com.bcs.stocks.model.stock.StocksDto;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface IEXService {
 
-    List<AllocationDto> getAllocations(List<StockDto> stocks);
+    List<AllocationDto> getAllocations(StocksDto stocks);
 }

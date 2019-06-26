@@ -1,4 +1,4 @@
-package com.bcs.stocks.model;
+package com.bcs.stocks.model.stock;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +15,14 @@ public class StockDto implements Serializable{
 
     @Getter
     @Setter
-    private String volume;
+    private Integer volume;
+
+    public StockDto() {
+        //no-args
+    }
+
+    public StockDto(String symbol, Integer volume) {
+        this.symbol = symbol;
+        this.volume = volume;
+    }
 }

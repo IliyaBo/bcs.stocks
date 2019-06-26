@@ -20,6 +20,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jackson.version>2.9.5</jackson.version>
 		<jackson.mapper.version>1.9.9</jackson.mapper.version>
+		<io.swagger>2.0.0-rc2</io.swagger>
 		<start-class>com.bcs.stocks.StocksApplication</start-class>
 
 		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
@@ -28,6 +29,7 @@
 	<modules>
 		<module>stocks-api</module>
 		<module>stocks-api-dto</module>
+		<module>stocks-utils</module>
 		<module>stocks-common</module>
 	</modules>
 
@@ -55,6 +57,13 @@
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-cbor</artifactId>
 			<version>${jackson.version}</version>
+		</dependency>
+
+		<!--swagger-->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${io.swagger}</version>
 		</dependency>
 
 		<dependency>
