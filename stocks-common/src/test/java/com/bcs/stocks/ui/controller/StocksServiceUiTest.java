@@ -21,7 +21,7 @@ public class StocksServiceUiTest {
     public void calculation() throws Exception {
         this.mockMvc.perform(get("/api/stocks/calculation"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("AAAA"));
+                .andExpect(content().string("check"));
     }
 
     /*

@@ -10,5 +10,12 @@ import java.util.List;
  */
 public interface IEXService {
 
-    List<AllocationDto> getAllocations(StocksDto stocks);
+    /**
+     * Pull stocks from cache or realTime and prepare allocations
+     *
+     * @param stocks dto from user's request
+     * @param fromCache take stocks from cache or in realTime mode
+     * @return custom allocation dto
+     */
+    List<AllocationDto> getAllocationsFrom(StocksDto stocks, Boolean fromCache);
 }

@@ -3,14 +3,16 @@ package com.bcs.stocks.ui.controller;
 import com.bcs.stocks.model.AllocationDto;
 import com.bcs.stocks.model.stock.StocksDto;
 import com.bcs.stocks.service.IEXService;
-/*import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
+
+/*import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;*/
 
 @RestController
 @RequestMapping("/api/stocks")
@@ -27,7 +29,7 @@ public class StocksServiceUi {
             value = "/calculation",
             method = RequestMethod.GET)
     public String calculation() {
-        return "AAAA";
+        return "check";
     }
 
 
@@ -39,8 +41,8 @@ public class StocksServiceUi {
             value = "/calculation",
             method = RequestMethod.POST,
             headers = "Accept=application/json")
-    public  List<AllocationDto> calculation(@RequestBody StocksDto stocks) {
+    public List<AllocationDto> calculation(@RequestBody StocksDto stocks) {
 
-        return iexService.getAllocations(stocks);
+        return iexService.getAllocationsFrom(stocks, Boolean.TRUE);
     }
 }

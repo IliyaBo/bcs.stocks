@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Mapper(imports = {JsonNode.class, Symbol.class}, componentModel = "spring")
-public interface IMapperImpl extends IMapper<JsonNode, Symbol> {
+public interface JsonNodeToSymbolMapperImpl extends IMapper<JsonNode, Symbol> {
 
     @Mapping(target = "", expression = "java(entity.get())")
     @Override

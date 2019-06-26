@@ -1,10 +1,10 @@
 package com.bcs.stocks.service;
 
+import com.bcs.stocks.exception.ExceptionUtil;
 import com.bcs.stocks.model.AllocationDto;
 import com.bcs.stocks.model.entity.Symbol;
 import com.bcs.stocks.model.stock.StockDto;
 import com.bcs.stocks.model.stock.StocksDto;
-import com.bcs.stocks.service.cashing.IEXCashSymbols;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
 public class IEXServiceImpl implements IEXService {
 
     @Autowired
-    private IEXCashSymbols cashSymbols;
+    private com.bcs.stocks.service.caching.IEXCachingSymbols cacheSymbols;
 
     @Override
-    public List<AllocationDto> getAllocations(StocksDto stocks) {
+    public List<AllocationDto> getAllocationsFrom(StocksDto stocks, Boolean fromCache) {
         Map<String, BigDecimal> sectorAndAssertValue = new HashMap<>();
         List<AllocationDto> allocations = new ArrayList<>();
         List<Symbol> symbols = new ArrayList<>();
@@ -44,24 +44,45 @@ public class IEXServiceImpl implements IEXService {
 
             root = mapper.readTree(response.getBody());
             Iterator<String> fieldNames = root.fieldNames();
-            while (fieldNames.hasNext()) {
-                Symbol symbol = null;
-                //JsonNode to symbol
 
+            //get stocks from cache
+            while (fieldNames.hasNext()) {
 
                 JsonNode symbolNode = root.path("symbol");
                 JsonNode sectorNode = root.path("sector");
                 JsonNode lastSalePriceNode = root.path("lastSalePrice");
                 String symbolStr = symbolNode.asText();
 
-                if(StringUtils.isEmpty(cashSymbols.getCashSymbol().get(symbolStr))){
-                    cashSymbols.getCashSymbol().put(symbolStr, symbol);
+                if (StringUtils.isEmpty(cacheSymbols.getCacheSymbol().get(symbolStr))) {
+                    //todo custom exceptions
+                    throw new RuntimeException("Stock not found from cache: " + symbolStr);
+                } else {
+                    symbols.add(cacheSymbols.getCacheSymbol().get(symbolStr));
                 }
             }
 
+            //filling the map : abbreviation and sum
+            for (Symbol symbol : symbols) {
+                BigDecimal sum = BigDecimal.ZERO;
+                Optional<StockDto> foundStockDto = stocks.getStocks().stream()
+                        .filter(stockDto -> stockDto.getSymbol().equals(symbol.getSymbol()))
+                        .findFirst();
+                if (foundStockDto.isPresent()) {
+                    sum.add(symbol.getLastSalePrice().multiply(BigDecimal.valueOf(foundStockDto.get().getVolume())));
+                }
+
+                if (sectorAndAssertValue.get(symbol.getSector()) == null) {
+                    sectorAndAssertValue.put(symbol.getSector(), symbol.getLastSalePrice());
+                } else {
+                    sectorAndAssertValue.put(symbol.getSector(), sum.add(sectorAndAssertValue.get(symbol.getSector())));
+                }
+            }
+
+
         } catch (Exception ex) {
-            //log.info(ExceptionUtil.getStackTraceAsString());
-            ex.printStackTrace();
+            log.error(ExceptionUtil.getStackTraceAsString(ex));
+            //todo custom exceptions
+            throw new RuntimeException("Error during process of calculate stocks");
         }
         return null;
     }
