@@ -1,18 +1,17 @@
 package com.bcs.stocks.ui.controller;
 
-import com.bcs.stocks.model.AllocationDto;
+import com.bcs.stocks.exception.ExceptionUtil;
+import com.bcs.stocks.model.CalculateDto;
 import com.bcs.stocks.model.stock.StocksDto;
+import com.bcs.stocks.result.ApiResult;
+import com.bcs.stocks.result.ApiResultError;
+import com.bcs.stocks.result.ResultError;
 import com.bcs.stocks.service.IEXService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
-/*import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;*/
 
 @RestController
 @RequestMapping("/api/stocks")
@@ -26,23 +25,24 @@ public class StocksServiceUi {
     }
 
     @RequestMapping(
-            value = "/calculation",
+            value = "/check",
             method = RequestMethod.GET)
-    public String calculation() {
+    public String check() {
         return "check";
     }
 
-
-    /*@ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response = String.class),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})*/
     @RequestMapping(
-            value = "/calculation",
+            value = "/calculateBySector",
             method = RequestMethod.POST,
             headers = "Accept=application/json")
-    public List<AllocationDto> calculation(@RequestBody StocksDto stocks) {
-
-        return iexService.getAllocationsFrom(stocks);
+    public ApiResult<CalculateDto> calculateBySector(@RequestBody StocksDto stocks) {
+        try {
+            return new ApiResult<>(iexService.calculateBySector(stocks));
+            //todo catch custom exceptions
+        } catch (Exception ex) {
+            return new ApiResult<>(
+                    new ApiResultError(ResultError.INTERNAL_ERROR.getCode(),
+                            ResultError.INTERNAL_ERROR.getMessage() + ExceptionUtil.getStackTraceAsString(ex)));
+        }
     }
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @ToString
-public class Symbol implements Comparable<Symbol>, Serializable {
+public class Symbol implements Serializable {
 
     @Getter
     @Setter
@@ -100,10 +100,5 @@ public class Symbol implements Comparable<Symbol>, Serializable {
         result = 31 * result + volume.hashCode();
         result = 31 * result + marketPercent.hashCode();
         return result;
-    }
-
-    @Override
-    public int compareTo(Symbol o) {
-        return this.getSymbol().compareTo(o.getSymbol());
     }
 }

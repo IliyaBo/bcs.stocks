@@ -6,10 +6,8 @@ import com.bcs.stocks.model.CalculateDto;
 import com.bcs.stocks.model.entity.Symbol;
 import com.bcs.stocks.model.stock.StockDto;
 import com.bcs.stocks.model.stock.StocksDto;
-import com.bcs.stocks.service.request.RequestUtil;
 import com.bcs.stocks.service.search.ISearchSymbols;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bcs.stocks.service.search.caching.IEXCachingSymbolsImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,16 +17,15 @@ import org.springframework.util.StringUtils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Service
 public class IEXServiceImpl implements IEXService {
 
-    private final ISearchSymbols searchSymbols;
+    private IEXCachingSymbolsImpl searchSymbols;
 
     @Autowired
-    public IEXServiceImpl(@Qualifier(ISearchSymbols.SEARCH_FROM_CACHE) ISearchSymbols searchSymbols) {
+    public void setSearchSymbols(IEXCachingSymbolsImpl searchSymbols) {
         this.searchSymbols = searchSymbols;
     }
 
@@ -38,12 +35,12 @@ public class IEXServiceImpl implements IEXService {
         List<Symbol> symbols = new ArrayList<>();
 
         try {
-
             for(StockDto stockDto: stocks.getStocks()){
                 String symbolStr = stockDto.getSymbol();
                 if (StringUtils.isEmpty(searchSymbols.getSymbols().get(symbolStr))) {
                     //todo custom exceptions
-                    throw new RuntimeException("Stock not found from cache: " + symbolStr);
+                    searchSymbols.updateCache();
+                    log.info("cache is not empty? " + !searchSymbols.getSymbols().isEmpty());
                 } else {
                     symbols.add(searchSymbols.getSymbols().get(symbolStr));
                 }

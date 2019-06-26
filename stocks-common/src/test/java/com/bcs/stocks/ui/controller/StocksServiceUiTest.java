@@ -18,16 +18,16 @@ public class StocksServiceUiTest {
     private MockMvc mockMvc;
 
     @Test
-    public void calculation() throws Exception {
-        this.mockMvc.perform(get("/api/stocks/calculation"))
+    public void check() throws Exception {
+        this.mockMvc.perform(get("/api/stocks/check"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("check"));
     }
 
-    /*
-    @Test
-    public void cal() throws Exception {
-        this.mockMvc.perform(get("https://api.iextrading.com/1.0/tops?symbols=SNAP"))
+
+    /*@Test
+    public void calculateBySector() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8080/stocks-common-0.0.1-SNAPSHOT/api/stocks/calculateBySector"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("good"));
     }*/
